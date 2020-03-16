@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from "./movie.model";
+import { CreateMovieDto } from "./dto/create-movie.dto";
 
 @Controller('movies')
 export class MoviesController {
@@ -12,7 +13,7 @@ export class MoviesController {
     }
 
     @Post()
-    createMovie(@Body('url') url: string): Movie {
-        return this.moviesService.createMovie(url);
+    createMovie(@Body() createMovieDto: CreateMovieDto): Movie {
+        return this.moviesService.createMovie(createMovieDto);
     }
 }

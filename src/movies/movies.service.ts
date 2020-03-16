@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Movie } from "./movie.model";
 import * as uuid from "uuid";
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 @Injectable()
 export class MoviesService {
@@ -10,7 +11,8 @@ export class MoviesService {
         return this.movies;
     }
 
-    createMovie(url: string) {
+    createMovie(createMovieDto: CreateMovieDto) {
+        const { url } = createMovieDto;
         const movie: Movie = {
             id: uuid(),
             url,
